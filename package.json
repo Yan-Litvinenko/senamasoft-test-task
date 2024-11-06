@@ -13,11 +13,11 @@
         "type-check": "tsc --noEmit"
     },
     "lint-staged": {
-        "src/**/*.{js,jsx,ts,tsx}": [
+        "*.{ts,tsx}": [
             "eslint --fix",
             "prettier --write"
         ],
-        "src/**/*.{json,css,scss,md}": [
+        "*.{json,css,scss,md}": [
             "prettier --write"
         ]
     },
