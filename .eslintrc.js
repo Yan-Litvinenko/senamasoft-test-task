@@ -1,0 +1,65 @@
+module.exports = {
+    parser: '@typescript-eslint/parser',
+    parserOptions: {
+        project: 'tsconfig.json',
+        tsconfigRootDir: __dirname,
+        sourceType: 'module',
+    },
+    plugins: ['@typescript-eslint', 'react', 'react-hooks'],
+    extends: [
+        'airbnb',
+        'airbnb-typescript',
+        'airbnb/hooks',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:prettier/recommended',
+    ],
+    root: true,
+    env: {
+        node: true,
+        browser: true,
+        jest: true,
+    },
+    rules: {
+        '@typescript-eslint/explicit-function-return-type': 'warn',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        '@typescript-eslint/no-explicit-any': 'error',
+        '@typescript-eslint/no-non-null-assertion': 'off',
+        '@typescript-eslint/no-unused-vars': 'error',
+        '@typescript-eslint/consistent-type-imports': [
+            'error',
+            { prefer: 'type-imports', disallowTypeAnnotations: true },
+        ],
+
+        'react-hooks/exhaustive-deps': 'warn',
+        'react-hooks/rules-of-hooks': 'error',
+        'react/display-name': 'off',
+        'react/jsx-props-no-spreading': 'off',
+        'react/prop-types': 'off',
+        'react/require-default-props': 'off',
+        'react/function-component-definition': [
+            'error',
+            { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' },
+        ],
+
+        'import/prefer-default-export': 'off',
+        'import/extensions': [
+            'error',
+            'ignorePackages',
+            { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' },
+        ],
+
+        'class-methods-use-this': 'off',
+        'comma-dangle': ['error', 'always-multiline'],
+        'comma-spacing': ['error', { before: false, after: true }],
+        'newline-per-chained-call': 'error',
+        'no-console': 'off',
+        'object-curly-spacing': ['error', 'always'],
+        'prettier/prettier': 'error',
+    },
+    settings: {
+        react: {
+            version: 'detect',
+        },
+    },
+    plugins: ['prettier'],
+};
