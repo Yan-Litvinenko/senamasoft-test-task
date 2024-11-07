@@ -27,7 +27,7 @@ export const AddTodoForm = (): React.JSX.Element => {
                 name="basic"
                 labelCol={{ span: 8 }}
                 wrapperCol={{ span: 16 }}
-                style={{ maxWidth: 600 }}
+                style={{ maxWidth: 600, width: '100%' }}
                 onFinish={onFinish}
                 autoComplete="off"
                 validateTrigger={['onSubmit']}
