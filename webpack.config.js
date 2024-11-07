@@ -1,16 +1,20 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserWebpackPlugin = require('terser-webpack-plugin');
-const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
-const DotenvWebpackPlugin = require('dotenv-webpack');
+import path from 'path';
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import TerserWebpackPlugin from 'terser-webpack-plugin';
+import CssMinimizerWebpackPlugin from 'css-minimizer-webpack-plugin';
+import ESLintPlugin from 'eslint-webpack-plugin';
+import DotenvWebpackPlugin from 'dotenv-webpack';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
 
-module.exports = {
+const config = {
     context: path.resolve(__dirname, 'src'),
     entry: './index.tsx',
     mode: isDev ? 'development' : 'production',
@@ -121,3 +125,5 @@ module.exports = {
     },
     devtool: isDev ? 'eval-source-map' : false,
 };
+
+export default config;

@@ -2,10 +2,10 @@ module.exports = {
     parser: '@typescript-eslint/parser',
     parserOptions: {
         project: 'tsconfig.json',
-        tsconfigRootDir: __dirname,
+        tsconfigRootDir: '.',
         sourceType: 'module',
     },
-    plugins: ['@typescript-eslint', 'react', 'react-hooks'],
+    plugins: ['@typescript-eslint', 'react', 'react-hooks', 'prettier'],
     extends: [
         'airbnb',
         'airbnb-typescript',
@@ -61,5 +61,4 @@ module.exports = {
             version: 'detect',
         },
     },
-    plugins: ['prettier'],
 };
