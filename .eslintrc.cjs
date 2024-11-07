@@ -51,6 +51,7 @@ module.exports = {
             'ignorePackages',
             { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' },
         ],
+        'import/order': 'off',
 
         'class-methods-use-this': 'off',
         'comma-dangle': ['error', 'always-multiline'],
@@ -59,6 +60,14 @@ module.exports = {
         'no-console': 'off',
         'object-curly-spacing': ['error', 'always'],
         'prettier/prettier': 'error',
+        'prefer-destructuring': 'off',
+        'no-param-reassign': [
+            'error',
+            {
+                props: true,
+                ignorePropertyModificationsFor: ['state'],
+            },
+        ],
     },
     settings: {
         react: {

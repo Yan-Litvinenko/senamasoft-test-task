@@ -1,8 +1,8 @@
 import React from 'react';
+import styles from './App.module.scss';
 import { Typography } from 'antd';
 import { AddTodoForm } from '../addTodoForm/AddTodoForm';
 import { TodoList } from '../todoList/TodoList';
-import styles from './App.module.scss';
 
 const { Title } = Typography;
 
