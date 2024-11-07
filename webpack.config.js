@@ -67,7 +67,13 @@ const config = {
         new MiniCssExtractPlugin({
             filename: isDev ? '[name].css' : '[name].[contenthash].css',
         }),
-        new DotenvWebpackPlugin(),
+        new DotenvWebpackPlugin({
+            path: './.env',
+            systemvars: true,
+            safe: true,
+            defaults: false,
+            expand: true,
+        }),
         new ESLintPlugin({
             extensions: ['ts', 'tsx'],
             failOnError: isProd,
@@ -89,19 +95,36 @@ const config = {
                 ],
             },
             {
-                test: /\.(scss|css)$/,
+                test: /\.css$/,
                 use: [
-                    isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {
                             modules: {
-                                auto: true,
-                                localIdentName: isDev
-                                    ? '[name]__[local]--[hash:base64:5]'
-                                    : '[hash:base64:8]',
+                                auto: /\.module\.css$/,
+                                localIdentName: '[name]__[local]___[hash:base64:5]',
+                                namedExport: false,
+                                exportLocalsConvention: 'as-is',
                             },
-                            sourceMap: isDev,
+                        },
+                    },
+                    'postcss-loader',
+                ],
+            },
+            {
+                test: /\.s[ac]ss$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                auto: /\.module\.s[ac]ss$/,
+                                localIdentName: '[name]__[local]--[hash:base64:5]',
+                                namedExport: false,
+                                exportLocalsConvention: 'as-is',
+                            },
                         },
                     },
                     'postcss-loader',
