@@ -1,6 +1,63 @@
 .todo {
     display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 16px;
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.todo__content {
+    margin-right: 16px;
+    min-width: 200px;
+}
+
+.todo__info {
+    display: flex;
     flex-direction: column;
-    row-gap: 4px;
-    width: 250px;
+    gap: 8px;
+}
+
+.todo__edit {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.todo__title {
+    font-size: 16px;
+    color: #262626;
+}
+
+.todo__description {
+    color: #595959;
+}
+
+.todo__status {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    background: #fff7e6;
+    color: #fa8c16;
+    border: 1px solid #ffd591;
+    width: max-content;
+}
+
+.todo__status_completed {
+    background: #f6ffed;
+    color: #52c41a;
+    border: 1px solid #b7eb8f;
+}
+
+.todo__actions {
+    white-space: nowrap;
+}
+
+@media (hover: hover) {
+    .todo:hover {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
 }
