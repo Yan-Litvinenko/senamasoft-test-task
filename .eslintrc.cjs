@@ -27,7 +27,11 @@ module.exports = {
         '@typescript-eslint/no-unused-vars': 'error',
         '@typescript-eslint/consistent-type-imports': [
             'error',
-            { prefer: 'type-imports', disallowTypeAnnotations: true },
+            {
+                prefer: 'type-imports',
+                disallowTypeAnnotations: true,
+                fixStyle: 'inline-type-imports',
+            },
         ],
 
         'react-hooks/exhaustive-deps': 'warn',

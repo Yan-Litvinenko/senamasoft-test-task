@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import http from 'http';
 import path from 'path';
@@ -8,10 +9,20 @@ import { getTodoList } from './server/routes/getTodoList';
 import { createTodo } from './server/routes/createTodo';
 import { deleteTodo } from './server/routes/deleteTodo';
 import { editTodo } from './server/routes/editTodo';
+import { getTodosCollection } from './server/db/getTodosCollection';
+import type { Todo } from './server/interfaces/collection.interface';
+
+dotenv.config();
 
 const PORT: number = Number(process.env.PORT) || 3000;
 const app: Express = express();
 const httpServer = http.createServer(app);
+
+(async (): Promise<void> => {
+    const todosCollection = await getTodosCollection();
+    const todos: Todo[] = await todosCollection.find().toArray();
+    console.log(todos);
+})();
 
 app.use(cors());
 app.use(bodyParser.json());
