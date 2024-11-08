@@ -7,7 +7,7 @@ import type { AddTodoFormType } from '../../interface/Todo.interface';
 const { Title } = Typography;
 
 export const AddPage = (): React.JSX.Element => {
-    const { onFinish, form, contextHolder, Form } = useAddTodo();
+    const { onFinish, form, Form } = useAddTodo();
 
     return (
         <div className={styles.add_page}>
@@ -17,7 +17,6 @@ export const AddPage = (): React.JSX.Element => {
                         Add todo
                     </Title>
                 </Typography>
-                {contextHolder}
                 <Form
                     form={form}
                     name="basic"

@@ -4,7 +4,6 @@ import type { FormInstance, Form } from 'antd';
 export type UseAddTodo = () => {
     onFinish: (values: AddTodoFormType) => void;
     form: FormInstance<AddTodoFormType>;
-    contextHolder: React.ReactNode;
     Form: typeof Form;
 };
 
@@ -14,19 +13,11 @@ export type UseTodoList = () => {
     error: boolean;
 };
 
-export type UseDeleteTodo = (
-    todo: TodoType,
-    showSuccess: MessageFunction,
-    showError: MessageFunction,
-) => {
+export type UseDeleteTodo = (todo: TodoType) => {
     handleDeleteTodo: () => Promise<void>;
 };
 
-export type UseEditTodo = (
-    todo: TodoType,
-    showSuccess: MessageFunction,
-    showError: MessageFunction,
-) => {
+export type UseEditTodo = (todo: TodoType) => {
     isEditing: boolean;
     editedTitle: string;
     editedDescription: string;

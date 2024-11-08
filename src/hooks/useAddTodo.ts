@@ -1,7 +1,8 @@
 import { addTodo } from '../redux/todosSlice';
 import { createTodo } from '../helpers/createTodo';
-import { message, Form } from 'antd';
+import { Form } from 'antd';
 import { useDispatch } from 'react-redux';
+import { useMessageContext } from '../hoc/MessageContext';
 import type { AddTodoFormType, TodoType } from '../interface/Todo.interface';
 import type { AppDispatch } from '../redux/store';
 import type { FormProps } from 'antd';
@@ -11,7 +12,7 @@ export const useAddTodo: UseAddTodo = () => {
     const dispatch = useDispatch<AppDispatch>();
 
     const [form] = Form.useForm();
-    const [messageApi, contextHolder] = message.useMessage();
+    const { showSuccess, showError } = useMessageContext();
 
     const onFinish: FormProps<AddTodoFormType>['onFinish'] = async (values): Promise<void> => {
         try {
@@ -21,13 +22,13 @@ export const useAddTodo: UseAddTodo = () => {
                 dispatch(addTodo(newTodo));
             }
 
-            messageApi.success('Todo created successfully!');
+            showSuccess('Todo created successfully!');
             form.resetFields();
         } catch (error) {
-            messageApi.error('Failed to create todo!');
+            showError('Failed to create todo!');
             console.error('Error creating todo:', error);
         }
     };
 
-    return { onFinish, form, contextHolder, Form };
+    return { onFinish, form, Form };
 };

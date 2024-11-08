@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Layout.module.scss';
+import { MessageProvider } from '../../hoc/MessageContext';
 import { Layout as AntLayout, Menu } from 'antd';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 
@@ -20,21 +21,23 @@ export const Layout = (): React.JSX.Element => {
     ];
 
     return (
-        <AntLayout className={styles.layout}>
-            <Header className={styles.layout__header}>
-                <Menu
-                    className={styles.layout__menu}
-                    theme="dark"
-                    mode="horizontal"
-                    selectedKeys={[location.pathname]}
-                    items={menuItems}
-                />
-            </Header>
-            <Content className={styles.layout__content}>
-                <div className={styles.layout__container}>
-                    <Outlet />
-                </div>
-            </Content>
-        </AntLayout>
+        <MessageProvider>
+            <AntLayout className={styles.layout}>
+                <Header className={styles.layout__header}>
+                    <Menu
+                        className={styles.layout__menu}
+                        theme="dark"
+                        mode="horizontal"
+                        selectedKeys={[location.pathname]}
+                        items={menuItems}
+                    />
+                </Header>
+                <Content className={styles.layout__content}>
+                    <div className={styles.layout__container}>
+                        <Outlet />
+                    </div>
+                </Content>
+            </AntLayout>
+        </MessageProvider>
     );
 };

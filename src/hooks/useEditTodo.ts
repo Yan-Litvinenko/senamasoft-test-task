@@ -1,15 +1,13 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useMessageContext } from '../hoc/MessageContext';
 import { editTodo } from '../redux/todosSlice';
+import { editTodo as editTodoHelper } from '../helpers/editTodo';
 import type { AppDispatch } from '../redux/store';
 import type { TodoType } from '../interface/Todo.interface';
-import type { UseEditTodo, MessageFunction } from '../interface/Hooks.interface';
+import type { UseEditTodo } from '../interface/Hooks.interface';
 
-export const useEditTodo: UseEditTodo = (
-    todo: TodoType,
-    showSuccess: MessageFunction,
-    showError: MessageFunction,
-) => {
+export const useEditTodo: UseEditTodo = (todo: TodoType) => {
     const dispatch = useDispatch<AppDispatch>();
 
     const { title, description } = todo;
@@ -18,15 +16,11 @@ export const useEditTodo: UseEditTodo = (
     const [editedTitle, setEditedTitle] = React.useState(title);
     const [editedDescription, setEditedDescription] = React.useState(description);
 
+    const { showSuccess, showError } = useMessageContext();
+
     const handleSave = async (): Promise<void> => {
         try {
-            const response = await fetch(`${process.env.SERVER_API}/todo/${todo._id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ title: editedTitle, description: editedDescription }),
-            });
+            const response = await editTodoHelper(todo._id, editedTitle, editedDescription);
 
             if (response.ok) {
                 dispatch(editTodo({ ...todo, title: editedTitle, description: editedDescription }));

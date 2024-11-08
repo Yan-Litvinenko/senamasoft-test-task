@@ -1,5 +1,5 @@
-import type { Response, Request } from 'express';
 import { getTodosCollection } from '../db/getTodosCollection';
+import type { Response, Request } from 'express';
 
 export const getTodoList = async (_: Request, res: Response): Promise<void> => {
     try {
