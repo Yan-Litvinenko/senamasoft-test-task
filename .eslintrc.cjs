@@ -44,6 +44,7 @@ module.exports = {
             'error',
             { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' },
         ],
+        'react/style-prop-object': 'off',
 
         'import/order': 'off',
         'import/prefer-default-export': 'off',

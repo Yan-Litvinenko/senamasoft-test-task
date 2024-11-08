@@ -1,4 +1,4 @@
-import { type TodoType } from './Todo.interface';
+import type { TodoType } from './Todo.interface';
 
 export type SliceTodo = {
     todos: TodoType[];
