@@ -21,11 +21,13 @@ export type UseEditTodo = (todo: TodoType) => {
     isEditing: boolean;
     editedTitle: string;
     editedDescription: string;
+    editedCompleted: boolean;
     handleSave: () => Promise<void>;
     handleCancel: () => void;
     setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
     setEditedTitle: React.Dispatch<React.SetStateAction<string>>;
     setEditedDescription: React.Dispatch<React.SetStateAction<string>>;
+    setEditedCompleted: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type MessageFunction = (content: string) => void;

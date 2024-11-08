@@ -5,7 +5,7 @@ import type { Todo } from '../interfaces/collection.interface';
 import type { Collection, UpdateResult } from 'mongodb';
 
 export const editTodo = async (req: Request, res: Response): Promise<void> => {
-    const { title, description } = req.body;
+    const { title, description, completed } = req.body;
     const { id } = req.params;
 
     try {
@@ -13,7 +13,7 @@ export const editTodo = async (req: Request, res: Response): Promise<void> => {
         const result: UpdateResult<Todo> = await collection.updateOne(
             { _id: new ObjectId(id) as unknown as string },
             {
-                $set: { title, description },
+                $set: { title, description, completed },
             },
         );
 

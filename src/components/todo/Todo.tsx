@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Todo.module.scss';
 import { useDeleteTodo } from '../../hooks/useDeleteTodo';
 import { useEditTodo } from '../../hooks/useEditTodo';
-import { Button, Input, Space, Typography } from 'antd';
+import { Button, Input, Space, Typography, Switch } from 'antd';
 import { EditOutlined, DeleteOutlined, SaveOutlined, CloseOutlined } from '@ant-design/icons';
 import type { TodoType } from '../../interface/Todo.interface';
 
@@ -14,9 +14,9 @@ export const Todo = (props: TodoType): React.JSX.Element => {
     const { handleDeleteTodo } = useDeleteTodo(props);
 
     const editTodo: ReturnType<typeof useEditTodo> = useEditTodo(props);
-    const { isEditing, editedTitle, editedDescription } = editTodo;
+    const { isEditing, editedTitle, editedDescription, editedCompleted } = editTodo;
     const { handleSave, handleCancel } = editTodo;
-    const { setIsEditing, setEditedTitle, setEditedDescription } = editTodo;
+    const { setIsEditing, setEditedTitle, setEditedDescription, setEditedCompleted } = editTodo;
 
     return (
         <div className={styles.todo}>
@@ -33,6 +33,14 @@ export const Todo = (props: TodoType): React.JSX.Element => {
                             onChange={(e): void => setEditedDescription(e.target.value)}
                             placeholder="Description"
                         />
+                        <div className={styles.todo__status_wrapper}>
+                            <Switch
+                                checked={editedCompleted}
+                                onChange={setEditedCompleted}
+                                checkedChildren="Completed"
+                                unCheckedChildren="In Progress"
+                            />
+                        </div>
                     </div>
                 ) : (
                     <div className={styles.todo__info}>
