@@ -1,12 +1,17 @@
 import React from 'react';
 import styles from './Todo.module.scss';
+import { useDeleteTodo } from '../../hooks/useDeleteTodo';
 import { Button, Input, Space, Typography } from 'antd';
 import { EditOutlined, DeleteOutlined, SaveOutlined, CloseOutlined } from '@ant-design/icons';
 import type { TodoType } from '../../interface/Todo.interface';
 
 const { Text } = Typography;
 
-export const Todo = ({ title, description, completed }: TodoType): React.JSX.Element => {
+export const Todo = (props: TodoType): React.JSX.Element => {
+    const { title, description, completed } = props;
+
+    const { handleDeleteTodo, contextHolder } = useDeleteTodo(props);
+
     const [isEditing, setIsEditing] = React.useState(false);
     const [editedTitle, setEditedTitle] = React.useState(title);
     const [editedDescription, setEditedDescription] = React.useState(description);
@@ -23,6 +28,7 @@ export const Todo = ({ title, description, completed }: TodoType): React.JSX.Ele
 
     return (
         <div className={styles.todo}>
+            {contextHolder}
             <div className={styles.todo__content}>
                 {isEditing ? (
                     <div className={styles.todo__edit}>
@@ -70,7 +76,12 @@ export const Todo = ({ title, description, completed }: TodoType): React.JSX.Ele
                         >
                             Edit
                         </Button>
-                        <Button type="text" danger icon={<DeleteOutlined />}>
+                        <Button
+                            type="text"
+                            danger
+                            icon={<DeleteOutlined />}
+                            onClick={handleDeleteTodo}
+                        >
                             Delete
                         </Button>
                     </>

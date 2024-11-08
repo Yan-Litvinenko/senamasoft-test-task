@@ -7,7 +7,7 @@ import type { AppDispatch } from '../redux/store';
 import type { FormProps } from 'antd';
 import type { UseAddTodo } from '../interface/Hooks.interface';
 
-export const useAddTodo = (): UseAddTodo => {
+export const useAddTodo: UseAddTodo = () => {
     const dispatch = useDispatch<AppDispatch>();
 
     const [form] = Form.useForm();

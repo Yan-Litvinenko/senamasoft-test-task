@@ -6,7 +6,7 @@ import type { AppDispatch } from '../redux/store';
 import type { TodoType } from '../interface/Todo.interface';
 import type { UseTodoList } from '../interface/Hooks.interface';
 
-export const useTodoList = (): UseTodoList => {
+export const useTodoList: UseTodoList = () => {
     const dispatch = useDispatch<AppDispatch>();
     const todos: TodoType[] = useSelector(todosSelector).todos;
     const isLoad: boolean = useSelector(todosSelector).isLoad;

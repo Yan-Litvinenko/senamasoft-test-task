@@ -1,15 +1,20 @@
 import type { AddTodoFormType, TodoType } from './Todo.interface';
 import type { FormInstance, Form } from 'antd';
 
-export type UseAddTodo = {
+export type UseAddTodo = () => {
     onFinish: (values: AddTodoFormType) => void;
     form: FormInstance<AddTodoFormType>;
     contextHolder: React.ReactNode;
     Form: typeof Form;
 };
 
-export type UseTodoList = {
+export type UseTodoList = () => {
     todos: TodoType[];
     isLoad: boolean;
     error: boolean;
+};
+
+export type UseDeleteTodo = (todo: TodoType) => {
+    handleDeleteTodo: () => Promise<void>;
+    contextHolder: React.ReactNode;
 };

@@ -45,22 +45,28 @@ module.exports = {
             { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' },
         ],
 
+        'import/order': 'off',
         'import/prefer-default-export': 'off',
         'import/extensions': [
             'error',
             'ignorePackages',
             { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' },
         ],
-        'import/order': 'off',
 
         'class-methods-use-this': 'off',
         'comma-dangle': ['error', 'always-multiline'],
         'comma-spacing': ['error', { before: false, after: true }],
         'newline-per-chained-call': 'error',
-        'no-console': 'off',
         'object-curly-spacing': ['error', 'always'],
         'prettier/prettier': 'error',
         'prefer-destructuring': 'off',
+        'no-console': 'off',
+        'no-underscore-dangle': [
+            'error',
+            {
+                allow: ['_id'],
+            },
+        ],
         'no-param-reassign': [
             'error',
             {
