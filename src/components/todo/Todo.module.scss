@@ -67,3 +67,18 @@
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 }
+
+@media (max-width: 460px) {
+    .todo {
+        padding: 8px;
+
+        &__content {
+            margin-right: 8px;
+            min-width: 170px;
+        }
+
+        &__actions {
+            flex-direction: column;
+        }
+    }
+}

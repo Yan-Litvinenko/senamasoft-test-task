@@ -29,3 +29,29 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+    .add_page {
+        padding: 0px;
+
+        &__inner {
+            width: 500px;
+        }
+    }
+}
+
+@media (max-width: 550px) {
+    .add_page {
+        &__inner {
+            width: 400px;
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    .add_page {
+        &__inner {
+            width: 300px;
+        }
+    }
+}
