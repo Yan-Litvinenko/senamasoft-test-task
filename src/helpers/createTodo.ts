@@ -1,8 +1,8 @@
 import type { TodoType } from '../interface/Todo.interface';
+import { SERVER_API } from '@env';
 
 export const createTodo = async (data: Omit<TodoType, '_id'>): Promise<TodoType> => {
-    const API_URL: string = process.env.SERVER_API!;
-    const response = await fetch(`${API_URL}/todo`, {
+    const response = await fetch(`${SERVER_API}/todo`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

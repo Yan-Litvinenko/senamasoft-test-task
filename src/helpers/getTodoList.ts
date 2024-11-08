@@ -1,7 +1,9 @@
 import type { TodoType } from '../interface/Todo.interface';
+import { SERVER_API } from '@env';
 
 export const getTodoList = async (): Promise<TodoType[]> => {
-    const API_URL: string = process.env.SERVER_API!;
+    const API_URL: string = SERVER_API!;
+    console.log('getTodoList', SERVER_API);
     const response = await fetch(`${API_URL}/todos`, {
         method: 'GET',
         headers: {

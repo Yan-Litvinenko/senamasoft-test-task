@@ -7,6 +7,8 @@ import { COLORS } from '@/constants/colors';
 export const HomeScreen: React.FC = () => {
     const { todos, isLoad, error } = useTodoList();
 
+    console.log(todos);
+
     if (error) {
         return (
             <View style={styles.centerContainer}>

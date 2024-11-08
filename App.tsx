@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import { store } from './src/redux/store';
 import { AddTodoScreen } from './src/screens/AddTodoScreen';
-import { View } from 'react-native';
+import { HomeScreen } from '@/screens/HomeScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -34,7 +34,7 @@ const App: FC = () => {
                 >
                     <Tab.Screen
                         name="Home"
-                        component={() => <View />}
+                        component={HomeScreen}
                         options={{
                             title: 'Todo List',
                             tabBarIcon: ({ color, size }) => (

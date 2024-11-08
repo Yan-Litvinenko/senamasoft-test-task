@@ -23,6 +23,6 @@
         },
         "typeRoots": ["./node_modules/@types", "./src/interface"]
     },
-    "include": ["**/*.ts", "**/*.tsx", "src/interface/types.d.ts"],
+    "include": ["**/*.ts", "**/*.tsx", "src/interface/types.d.ts,"],
     "exclude": ["node_modules", "babel.config.js", "metro.config.js"]
 }

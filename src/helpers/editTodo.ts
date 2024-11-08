@@ -1,10 +1,12 @@
+import { SERVER_API } from '@env';
+
 export const editTodo = async (
     id: string,
     title: string,
     description: string,
     completed: boolean,
 ): Promise<Response> => {
-    const response = await fetch(`${process.env.SERVER_API}/todo/${id}`, {
+    const response = await fetch(`${SERVER_API}/todo/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
