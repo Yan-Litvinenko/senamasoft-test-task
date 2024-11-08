@@ -20,7 +20,7 @@ export const TodoList = (): React.JSX.Element => {
     return (
         <div className={styles.todo_list}>
             <Typography>
-                <Title level={1}>Add todo</Title>
+                <Title level={1}>Todo list</Title>
             </Typography>
             <List
                 className={styles.list}

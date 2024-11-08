@@ -14,7 +14,32 @@ export type UseTodoList = () => {
     error: boolean;
 };
 
-export type UseDeleteTodo = (todo: TodoType) => {
+export type UseDeleteTodo = (
+    todo: TodoType,
+    showSuccess: MessageFunction,
+    showError: MessageFunction,
+) => {
     handleDeleteTodo: () => Promise<void>;
+};
+
+export type UseEditTodo = (
+    todo: TodoType,
+    showSuccess: MessageFunction,
+    showError: MessageFunction,
+) => {
+    isEditing: boolean;
+    editedTitle: string;
+    editedDescription: string;
+    handleSave: () => Promise<void>;
+    handleCancel: () => void;
+    setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
+    setEditedTitle: React.Dispatch<React.SetStateAction<string>>;
+    setEditedDescription: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export type MessageFunction = (content: string) => void;
+export type UseMessage = () => {
+    showSuccess: MessageFunction;
+    showError: MessageFunction;
     contextHolder: React.ReactNode;
 };

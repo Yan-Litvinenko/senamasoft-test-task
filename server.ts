@@ -21,9 +21,9 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/api/todos', getTodoList);
-app.post('/api/todos', createTodo);
-app.delete('/api/todos/:id', deleteTodo);
-app.put('/api/todos/:id', editTodo);
+app.post('/api/todo', createTodo);
+app.delete('/api/todo/:id', deleteTodo);
+app.put('/api/todo/:id', editTodo);
 
 app.use((err: Error, _: Request, res: Response) => {
     console.error(err.stack);

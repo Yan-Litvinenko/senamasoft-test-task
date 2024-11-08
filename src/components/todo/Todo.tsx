@@ -1,30 +1,24 @@
 import React from 'react';
 import styles from './Todo.module.scss';
 import { useDeleteTodo } from '../../hooks/useDeleteTodo';
+import { useEditTodo } from '../../hooks/useEditTodo';
 import { Button, Input, Space, Typography } from 'antd';
 import { EditOutlined, DeleteOutlined, SaveOutlined, CloseOutlined } from '@ant-design/icons';
+import { useMessage } from '../../hooks/useMessage';
 import type { TodoType } from '../../interface/Todo.interface';
 
 const { Text } = Typography;
 
 export const Todo = (props: TodoType): React.JSX.Element => {
+    const { showSuccess, showError, contextHolder } = useMessage();
     const { title, description, completed } = props;
 
-    const { handleDeleteTodo, contextHolder } = useDeleteTodo(props);
+    const { handleDeleteTodo } = useDeleteTodo(props, showSuccess, showError);
 
-    const [isEditing, setIsEditing] = React.useState(false);
-    const [editedTitle, setEditedTitle] = React.useState(title);
-    const [editedDescription, setEditedDescription] = React.useState(description);
-
-    const handleSave = (): void => {
-        setIsEditing(false);
-    };
-
-    const handleCancel = (): void => {
-        setEditedTitle(title);
-        setEditedDescription(description);
-        setIsEditing(false);
-    };
+    const editTodo: ReturnType<typeof useEditTodo> = useEditTodo(props, showSuccess, showError);
+    const { isEditing, editedTitle, editedDescription } = editTodo;
+    const { handleSave, handleCancel } = editTodo;
+    const { setIsEditing, setEditedTitle, setEditedDescription } = editTodo;
 
     return (
         <div className={styles.todo}>

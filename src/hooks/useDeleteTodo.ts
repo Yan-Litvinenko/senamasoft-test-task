@@ -1,24 +1,19 @@
-import { message } from 'antd';
 import { useDispatch } from 'react-redux';
 import { deleteTodo } from '../redux/todosSlice';
-import type { TodoType } from '../interface/Todo.interface';
 import type { AppDispatch } from '../redux/store';
-import type { UseDeleteTodo } from '../interface/Hooks.interface';
+import type { MessageFunction, UseDeleteTodo } from '../interface/Hooks.interface';
+import type { TodoType } from '../interface/Todo.interface';
 
-export const useDeleteTodo: UseDeleteTodo = (todo: TodoType) => {
+export const useDeleteTodo: UseDeleteTodo = (
+    todo: TodoType,
+    showSuccess: MessageFunction,
+    showError: MessageFunction,
+) => {
     const dispatch = useDispatch<AppDispatch>();
-    const [messageApi, contextHolder] = message.useMessage();
-
-    const success = (): void => {
-        messageApi.open({
-            type: 'success',
-            content: 'Todo deleted successfully!',
-        });
-    };
 
     const handleDeleteTodo = async (): Promise<void> => {
         try {
-            const response = await fetch(`${process.env.SERVER_API}/todos/${todo._id}`, {
+            const response = await fetch(`${process.env.SERVER_API}/todo/${todo._id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -30,11 +25,12 @@ export const useDeleteTodo: UseDeleteTodo = (todo: TodoType) => {
             }
 
             dispatch(deleteTodo(todo));
-            success();
+            showSuccess('Todo deleted successfully!');
         } catch (error) {
             console.error('Error deleting todo:', error);
+            showError('Failed to delete todo');
         }
     };
 
-    return { handleDeleteTodo, contextHolder };
+    return { handleDeleteTodo };
 };
