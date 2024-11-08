@@ -5,34 +5,28 @@ module.exports = {
         tsconfigRootDir: '.',
         sourceType: 'module',
     },
-    plugins: ['@typescript-eslint', 'react', 'react-hooks', 'prettier'],
+    plugins: ['@typescript-eslint', 'react', 'react-hooks', 'prettier', 'react-native'],
     extends: [
         'airbnb',
         'airbnb-typescript',
         'airbnb/hooks',
         'plugin:@typescript-eslint/recommended',
         'plugin:prettier/recommended',
+        'plugin:react-native/all',
     ],
     root: true,
     env: {
+        'react-native/react-native': true,
         node: true,
-        browser: true,
         jest: true,
     },
     rules: {
-        '@typescript-eslint/explicit-function-return-type': 'warn',
+        '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-explicit-any': 'error',
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/no-unused-vars': 'error',
-        '@typescript-eslint/consistent-type-imports': [
-            'error',
-            {
-                prefer: 'type-imports',
-                disallowTypeAnnotations: true,
-                fixStyle: 'inline-type-imports',
-            },
-        ],
+        '@typescript-eslint/no-use-before-define': 'off',
 
         'react-hooks/exhaustive-deps': 'warn',
         'react-hooks/rules-of-hooks': 'error',
@@ -40,20 +34,27 @@ module.exports = {
         'react/jsx-props-no-spreading': 'off',
         'react/prop-types': 'off',
         'react/require-default-props': 'off',
-        'react/function-component-definition': [
-            'error',
-            { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' },
-        ],
+        'react/function-component-definition': 'off',
         'react/style-prop-object': 'off',
+        'react-native/no-unused-styles': 'warn',
+        'react-native/split-platform-components': 'error',
+        'react-native/no-inline-styles': 'error',
+        'react-native/no-color-literals': 'off',
+        'react-native/no-raw-text': 'off',
+        'react/no-unstable-nested-components': ['error', { allowAsProps: true }],
 
         'import/order': 'off',
         'import/prefer-default-export': 'off',
-        'import/extensions': [
-            'error',
-            'ignorePackages',
-            { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' },
-        ],
+        'import/extensions': 'off',
+        'import/no-extraneous-dependencies': 'off',
+        'import/no-cycle': 'off',
+        'import/no-self-import': 'off',
+        'import/no-relative-packages': 'off',
+        'import/no-duplicates': 'off',
+        'import/no-named-as-default': 'off',
+        'import/no-useless-path-segments': 'off',
 
+        'no-underscore-dangle': ['error', { allow: ['_id'] }],
         'class-methods-use-this': 'off',
         'comma-dangle': ['error', 'always-multiline'],
         'comma-spacing': ['error', { before: false, after: true }],
@@ -62,12 +63,6 @@ module.exports = {
         'prettier/prettier': 'error',
         'prefer-destructuring': 'off',
         'no-console': 'off',
-        'no-underscore-dangle': [
-            'error',
-            {
-                allow: ['_id'],
-            },
-        ],
         'no-param-reassign': [
             'error',
             {
@@ -79,6 +74,12 @@ module.exports = {
     settings: {
         react: {
             version: 'detect',
+        },
+        'import/resolver': {
+            node: {
+                extensions: ['.js', '.jsx', '.ts', '.tsx'],
+                paths: ['src'],
+            },
         },
     },
 };

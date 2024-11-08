@@ -1,4 +1,4 @@
-export const deleteTodo = async (id: string): Promise<void> => {
+export const deleteTodo = async (id: string): Promise<Response> => {
     const response = await fetch(`${process.env.SERVER_API}/todo/${id}`, {
         method: 'DELETE',
         headers: {
