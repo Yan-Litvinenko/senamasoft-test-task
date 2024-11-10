@@ -1,7 +1,8 @@
 import { SERVER_API } from '@env';
+import type { ObjectId } from 'mongodb';
 
 export const editTodo = async (
-    id: string,
+    id: ObjectId,
     title: string,
     description: string,
     completed: boolean,

@@ -30,7 +30,7 @@ export const HomeScreen: React.FC = () => {
             <Text style={styles.title}>Todo List</Text>
             <FlatList
                 data={todos}
-                keyExtractor={(item) => item._id}
+                keyExtractor={(item) => item._id.toString()}
                 renderItem={({ item }) => <Todo {...item} />}
                 contentContainerStyle={styles.listContent}
                 ListEmptyComponent={<Text style={styles.emptyText}>No todos yet</Text>}

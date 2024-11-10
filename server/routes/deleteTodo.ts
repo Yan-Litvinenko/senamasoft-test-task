@@ -11,15 +11,20 @@ export const deleteTodo = async (req: Request, res: Response): Promise<void> => 
             _id: new ObjectId(id) as ObjectId,
         });
 
-        console.log(`delete id: ${id}, result: ${result}`);
-
-        if (!result) {
+        if (result.deletedCount === 0) {
             res.status(404).json({ message: 'Todo not found' });
             return;
         }
 
-        res.status(200).json({ message: 'Todo deleted successfully' });
+        res.status(200).json({
+            ok: true,
+            message: 'Todo deleted successfully',
+        });
     } catch (error) {
-        res.status(500).json({ message: 'Internal server error' });
+        console.error('Error deleting todo:', error);
+        res.status(500).json({
+            ok: false,
+            message: 'Internal server error',
+        });
     }
 };

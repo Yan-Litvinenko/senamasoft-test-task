@@ -1,5 +1,4 @@
 import React from 'react';
-import { Alert } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { editTodo } from '@/redux/todosSlice';
 import { editTodo as editTodoHelper } from '@/helpers/editTodo';
@@ -35,11 +34,9 @@ export const useEditTodo: UseEditTodo = (todo: TodoType) => {
                     }),
                 );
                 setIsEditing(false);
-                Alert.alert('Success', 'Todo updated successfully!', [{ text: 'OK' }]);
             }
         } catch (error) {
             console.error(error);
-            Alert.alert('Error', 'Failed to update todo', [{ text: 'OK' }]);
         }
     };
 

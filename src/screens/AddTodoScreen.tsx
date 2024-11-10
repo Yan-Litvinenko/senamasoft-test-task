@@ -12,8 +12,8 @@ import {
     TextStyle,
 } from 'react-native';
 import { useAddTodo } from '@/hooks/useAddTodo';
-import type { AddTodoScreenNavigationProp } from '@/interface/Navigation.interface';
 import { COLORS } from '@/constants/colors';
+import type { AddTodoScreenNavigationProp } from '@/interface/Navigation.interface';
 
 type AddTodoScreenProps = {
     navigation: AddTodoScreenNavigationProp;
