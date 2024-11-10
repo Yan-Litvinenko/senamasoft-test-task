@@ -1,4 +1,6 @@
-export const deleteTodo = async (id: string): Promise<void> => {
+import type { ObjectId } from 'mongodb';
+
+export const deleteTodo = async (id: ObjectId): Promise<void> => {
     const response = await fetch(`${process.env.SERVER_API}/todo/${id}`, {
         method: 'DELETE',
         headers: {

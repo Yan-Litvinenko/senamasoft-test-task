@@ -46,6 +46,7 @@ module.exports = {
         ],
 
         'import/order': 'off',
+        'import/no-duplicates': 'off',
         'import/prefer-default-export': 'off',
         'import/extensions': [
             'error',

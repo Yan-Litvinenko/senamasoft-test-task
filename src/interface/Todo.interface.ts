@@ -1,5 +1,7 @@
+import type { ObjectId } from 'mongodb';
+
 export type TodoType = {
-    _id: string;
+    _id: ObjectId;
     completed: boolean;
     description: string;
     title: string;

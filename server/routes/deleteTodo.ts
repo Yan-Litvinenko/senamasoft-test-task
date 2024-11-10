@@ -8,7 +8,7 @@ export const deleteTodo = async (req: Request, res: Response): Promise<void> => 
         const { id } = req.params;
         const collection: Collection<Todo> = await getTodosCollection();
         const result: DeleteResult = await collection.deleteOne({
-            _id: new ObjectId(id) as unknown as string,
+            _id: new ObjectId(id),
         });
 
         if (!result) {
