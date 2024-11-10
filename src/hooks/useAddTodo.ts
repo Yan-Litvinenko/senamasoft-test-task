@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Alert } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '@/redux/todosSlice';
 import { createTodo } from '@/helpers/createTodo';
@@ -12,7 +11,7 @@ export interface FormErrors {
     description?: string;
 }
 
-export const useAddTodo: UseAddTodo = (navigation) => {
+export const useAddTodo: UseAddTodo = () => {
     const dispatch = useDispatch<AppDispatch>();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -51,22 +50,10 @@ export const useAddTodo: UseAddTodo = (navigation) => {
             };
 
             const newTodo = await createTodo(todoData);
-
-            if (newTodo) {
-                dispatch(addTodo(newTodo));
-                Alert.alert('Success', 'Todo created successfully!', [
-                    {
-                        text: 'OK',
-                        onPress: () => {
-                            resetForm();
-                            navigation.goBack();
-                        },
-                    },
-                ]);
-            }
+            dispatch(addTodo(newTodo));
+            resetForm();
         } catch (error) {
             console.error('Error creating todo:', error);
-            Alert.alert('Error', 'Failed to create todo!', [{ text: 'OK' }]);
         } finally {
             setIsLoading(false);
         }
@@ -79,7 +66,6 @@ export const useAddTodo: UseAddTodo = (navigation) => {
         setDescription,
         handleSubmit,
         isLoading,
-        resetForm,
         errors,
     };
 };

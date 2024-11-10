@@ -1,17 +1,14 @@
 import { TodoType } from './Todo.interface';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import type { RootStackParamList } from './Navigation.interface';
 import type { FormErrors } from '@/hooks/useAddTodo';
 
-export type UseAddTodo = (navigation: NativeStackNavigationProp<RootStackParamList, 'AddTodo'>) => {
-    title: string;
+export type UseAddTodo = () => {
     setTitle: (value: string) => void;
-    description: string;
     setDescription: (value: string) => void;
     handleSubmit: () => Promise<void>;
+    description: string;
     isLoading: boolean;
-    resetForm: () => void;
     errors: FormErrors;
+    title: string;
 };
 
 export type UseTodoList = () => {

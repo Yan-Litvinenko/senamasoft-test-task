@@ -4,7 +4,6 @@ import type { Db } from 'mongodb';
 let db: Db | null = null;
 
 export const connectToDataBase = async (): Promise<Db> => {
-    console.log('connectToDataBase');
     if (db) return db;
 
     try {

@@ -11,7 +11,7 @@ export const editTodo = async (req: Request, res: Response): Promise<void> => {
     try {
         const collection: Collection<Todo> = await getTodosCollection();
         const result: UpdateResult<Todo> = await collection.updateOne(
-            { _id: new ObjectId(id) as unknown as string },
+            { _id: new ObjectId(id) as ObjectId },
             {
                 $set: { title, description, completed },
             },

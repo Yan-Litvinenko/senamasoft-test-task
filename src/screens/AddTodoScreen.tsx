@@ -19,9 +19,9 @@ type AddTodoScreenProps = {
     navigation: AddTodoScreenNavigationProp;
 };
 
-export const AddTodoScreen: React.FC<AddTodoScreenProps> = ({ navigation }) => {
+export const AddTodoScreen: React.FC<AddTodoScreenProps> = () => {
     const { title, setTitle, description, setDescription, handleSubmit, isLoading, errors } =
-        useAddTodo(navigation);
+        useAddTodo();
 
     return (
         <KeyboardAvoidingView

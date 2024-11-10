@@ -9,38 +9,28 @@ export const useDeleteTodo: UseDeleteTodo = (todo: TodoType) => {
     const dispatch = useDispatch();
 
     const handleDeleteTodo = async (): Promise<void> => {
-        Alert.alert(
-            'Delete Todo',
-            'Are you sure you want to delete this todo?',
-            [
-                {
-                    text: 'Cancel',
-                    style: 'cancel',
-                },
-                {
-                    text: 'Delete',
-                    style: 'destructive',
-                    onPress: async () => {
-                        try {
-                            const response = await deleteTodoHelper(todo._id);
+        // Проверка наличия todo и _id
+        if (!todo || !todo._id) {
+            console.error('Invalid todo object:', todo);
+            Alert.alert('Error', 'Invalid todo data');
+            return;
+        }
 
-                            if (response.ok) {
-                                dispatch(deleteTodo(todo));
-                                Alert.alert('Success', 'Todo deleted successfully!', [
-                                    { text: 'OK' },
-                                ]);
-                            } else {
-                                throw new Error('Failed to delete todo');
-                            }
-                        } catch (error) {
-                            console.error('Error deleting todo:', error);
-                            Alert.alert('Error', 'Failed to delete todo', [{ text: 'OK' }]);
-                        }
-                    },
-                },
-            ],
-            { cancelable: true },
-        );
+        try {
+            const response = await deleteTodoHelper(todo._id.toString());
+
+            if (!response || !response.ok) {
+                throw new Error('Ошибка при удалении задачи');
+            }
+
+            dispatch(deleteTodo(todo));
+            Alert.alert('Успешно', 'Задача успешно удалена!', [{ text: 'OK' }]);
+        } catch (error) {
+            console.error('Ошибка при удалении задачи:', error);
+            Alert.alert('Ошибка', 'Не удалось удалить задачу. Попробуйте еще раз.', [
+                { text: 'OK' },
+            ]);
+        }
     };
 
     return { handleDeleteTodo };
